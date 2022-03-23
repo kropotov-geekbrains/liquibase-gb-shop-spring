@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd ">
+
+    
+    <changeSet id="before_create_mvp_auth_table" author="krivobokov">
+        <tagDatabase tag="before_create_mvp_auth_table"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_USER" author="krivobokov">
+        <createTable tableName="ACCOUNT_USER">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USERNAME" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="PASSWORD" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="FIRSTNAME" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="LASTNAME" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="ACCOUNT_NON_EXPIRED" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="ACCOUNT_NON_LOCKED" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREDENTIALS_NON_EXPIRED" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="ENABLED" type="boolean">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_ROLE" author="krivobokov">
+        <createTable tableName="ACCOUNT_ROLE">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="create_table.USER_ROLE" author="krivobokov" context="postgresql" labels="user_role">
+        <createTable tableName="USER_ROLE">
+            <column name="USER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="USER_ROLE" columnNames="USER_ID, ROLE_ID"/>
+        <addForeignKeyConstraint baseTableName="USER_ROLE" baseColumnNames="USER_ID" constraintName="FK_USER_ROLE_USER" referencedTableName="ACCOUNT_USER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="USER_ROLE" baseColumnNames="ROLE_ID" constraintName="FK_USER_ROLE_ROLE" referencedTableName="ACCOUNT_ROLE"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="create_table.AUTHORITY" author="krivobokov">
+        <createTable tableName="AUTHORITY">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="PERMISSION" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table.ROLE_AUTHORITY" author="krivobokov" context="postgresql" labels="user_role">
+        <createTable tableName="ROLE_AUTHORITY">
+            <column name="AUTHORITY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="ROLE_AUTHORITY" columnNames="AUTHORITY_ID, ROLE_ID"/>
+        <addForeignKeyConstraint baseTableName="ROLE_AUTHORITY" baseColumnNames="AUTHORITY_ID" constraintName="FK_ROLE_AUTHORITY_AUTHORITY" referencedTableName="AUTHORITY"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="ROLE_AUTHORITY" baseColumnNames="ROLE_ID" constraintName="FK_ROLE_AUTHORITY_ROLE" referencedTableName="ACCOUNT_ROLE"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="add_value_sql_script" author="krivobokov" context="postgresql">
+        <sql>
+            insert into account_user (username, password, firstname, lastname, ACCOUNT_NON_EXPIRED, ACCOUNT_NON_LOCKED,
+            CREDENTIALS_NON_EXPIRED, enabled)
+            values ('user', '$2a$10$rSL9AI8zo3jevAAjOJtwLOCknuqPWMQsw5dMFoCSi0IdTwyz7kuMi', 'Иван', 'Петров', true, true, true,
+            true),
+            ('admin', '$2a$10$MTOD2wE6bZqbgm0DfG41be44FCTnNyeVkkksycfWCJaFPmgHazOUG', 'Владимир', 'Николаев', true, true,
+            true, true);
+
+
+
+            insert into authority (permission)
+            values ('product.create'),
+            ('product.update'),
+            ('product.read'),
+            ('product.delete');
+
+            insert into account_role (name)
+            values ('ROLE_ADMIN'),
+            ('ROLE_USER');
+
+
+            insert into role_authority (ROLE_ID, AUTHORITY_ID)
+            values (1, 1),
+            (1, 2),
+            (1, 3),
+            (1, 4),
+            (2, 3);
+
+            insert into user_role(USER_ID, ROLE_ID)
+            values (1, 2),
+            (2, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
