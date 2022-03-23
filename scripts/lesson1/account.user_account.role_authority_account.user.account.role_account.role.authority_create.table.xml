@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_create_security_tables" author="kuranov" context="postgresql" labels="security_tables">
+        <tagDatabase tag="before_create_table.ACCOUNT_USER"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_USER" author="kuranov" context="postgresql" labels="security_tables">
+        <createTable tableName="ACCOUNT_USER">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_NON_EXPIRED" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_NON_LOCKED" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREDENTIALS_NON_EXPIRED" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="before_create_table.ACCOUNT_ROLE" author="kuranov" context="postgresql" labels="security_tables">
+        <tagDatabase tag="before_create_table.ACCOUNT_ROLE"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_ROLE" author="kuranov" context="postgresql" labels="security_tables">
+        <createTable tableName="ACCOUNT_ROLE">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="before_create_table.AUTHORITY" author="kuranov" context="postgresql" labels="security_tables">
+        <tagDatabase tag="before_create_table.AUTHORITY"/>
+    </changeSet>
+
+    <changeSet id="create_table.AUTHORITY" author="kuranov" context="postgresql" labels="security_tables">
+        <createTable tableName="AUTHORITY">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="PERMISSION" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="before_create_table.ACCOUNT_USER_ACCOUNT_ROLE" author="kuranov" context="postgresql"
+               labels="security_tables">
+        <tagDatabase tag="before_create_table.ACCOUNT_USER_ACCOUNT_ROLE"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_USER_ACCOUNT_ROLE" author="kuranov" context="postgresql"
+               labels="security_tables">
+        <createTable tableName="ACCOUNT_USER_ACCOUNT_ROLE">
+            <column name="ACCOUNT_USER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_ROLE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="ACCOUNT_USER_ACCOUNT_ROLE" columnNames="ACCOUNT_USER_ID, ACCOUNT_ROLE_ID"/>
+        <addForeignKeyConstraint baseTableName="ACCOUNT_USER"
+                                 baseColumnNames="ID"
+                                 constraintName="FK_ACCOUNT_USER_ACCOUNT_ROLE_ACCOUNT_USER_ACCOUNT_ROLE"
+                                 referencedTableName="ACCOUNT_ROLE"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="ACCOUNT_ROLE"
+                                 baseColumnNames="ID"
+                                 constraintName="FK_ACCOUNT_USER_ACCOUNT_ROLE_ACCOUNT_ROLE_ACCOUNT_USER"
+                                 referencedTableName="ACCOUNT_USER"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="before_create_table.ACCOUNT_ROLE_AUTHORITY" author="kuranov" context="postgresql"
+               labels="security_tables">
+        <tagDatabase tag="before_create_table.ACCOUNT_ROLE_AUTHORITY"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_ROLE_AUTHORITY" author="kuranov" context="postgresql" labels="security_tables">
+        <createTable tableName="ACCOUNT_ROLE_AUTHORITY">
+            <column name="ACCOUNT_ROLE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUTHORITY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="ACCOUNT_ROLE_AUTHORITY" columnNames="ACCOUNT_ROLE_ID, AUTHORITY_ID"/>
+        <addForeignKeyConstraint baseTableName="ACCOUNT_ROLE"
+                                 baseColumnNames="ID"
+                                 constraintName="FK_ACCOUNT_ROLE_AUTHORITY_ACCOUNT_ROLE_AUTHORITY"
+                                 referencedTableName="AUTHORITY"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="AUTHORITY"
+                                 baseColumnNames="ID"
+                                 constraintName="FK_ACCOUNT_ROLE_AUTHORITY_AUTHORITY_ACCOUNT_ROLE"
+                                 referencedTableName="ACCOUNT_ROLE"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+
+</databaseChangeLog>
