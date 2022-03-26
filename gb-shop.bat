@@ -1,1 +1,1 @@
-./liquibase --classpath=scripts --logLevel debug --defaultFile=gb-shop.properties %*
+./liquibase --classpath=scripts --logLevel debug --defaults-file=gb-shop.properties %*
