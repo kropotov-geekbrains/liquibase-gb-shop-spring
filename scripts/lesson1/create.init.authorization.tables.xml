@@ -51,7 +51,7 @@
             </column>
         </createTable>
 
-        <addUniqueConstraint tableName="AUTHORITY" columnNames="PERMISSION"/>
+        <addUniqueConstraint tableName="AUTHORITY" columnNames="PERMISSION" constraintName="AUTHORITY_UK"/>
     </changeSet>
 
     <changeSet id="create_table.ACCOUNT_ROLE" author="selyutin.paul"
@@ -64,7 +64,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addUniqueConstraint tableName="ACCOUNT_ROLE" columnNames="NAME"/>
+        <addUniqueConstraint tableName="ACCOUNT_ROLE" columnNames="NAME" constraintName="ACCOUNT_ROLE_UK"/>
     </changeSet>
 
     <changeSet id="create_table.ROLE_AUTHORITY" author="selyutin.paul"
