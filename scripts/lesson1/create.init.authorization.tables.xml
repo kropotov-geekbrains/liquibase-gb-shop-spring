@@ -3,6 +3,10 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
+    <changeSet id="before_create_authorization_tables" author="selyutin.paul">
+        <tagDatabase tag="before_create_authorization_tables"/>
+    </changeSet>
+
     <changeSet id="create_table.ACCOUNT_USER" author="selyutin.paul"
                context="postgresql" labels="account_user">
         <createTable tableName="ACCOUNT_USER">
