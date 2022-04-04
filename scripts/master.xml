@@ -9,7 +9,7 @@
 
     <include file="lesson1/create.init.tables.xml" relativeToChangelogFile="true"/>
     <include file="lesson1/product.add.column.manufacturer.id.xml" relativeToChangelogFile="true"/>
-    <include file="lesson1/create.user.role.auth.tables.xml" relativeToChangelogFile="true"/>
+    <include file="lesson1/create.user.role.authority.tables.xml" relativeToChangelogFile="true"/>
 
     <include file="lesson2/manufacturer.add.service.info.columns.xml" relativeToChangelogFile="true"/>
 
