@@ -13,4 +13,6 @@
 
     <include file="lesson2/manufacturer.add.service.info.columns.xml" relativeToChangelogFile="true"/>
 
+    <include file="lesson5/category.add.service.info.columns.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
