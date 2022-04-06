@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd ">
+
+    <changeSet id="before_category_add_columns.VERSION.CREATED_BY.CREATED_DATE.LAST_MODIFIED_BY.LAST_MODIFIED_DATE"
+               author="fedin.ivan" context="postgresql"
+               labels="version, created_by, created_date, last_modified_by, last_modified_date">
+        <tagDatabase tag="before_category_add_columns_version_created_by_created_date_last_modified_by_last_modified_date"/>
+    </changeSet>
+
+    <changeSet id="category_add_columns.VERSION.CREATED_BY.CREATED_DATE.LAST_MODIFIED_BY.LAST_MODIFIED_DATE"
+               author="fedin.ivan" context="postgresql"
+               labels="version, created_by, created_date, last_modified_by, last_modified_date">
+        <addColumn tableName="CATEGORY">
+            <column name="VERSION" type="INT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="varchar(255)"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP"/>
+        </addColumn>
+
+    </changeSet>
+
+</databaseChangeLog>
