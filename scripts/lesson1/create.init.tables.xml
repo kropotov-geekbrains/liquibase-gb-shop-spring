@@ -84,5 +84,39 @@
                                  referencedTableName="CATEGORY" referencedColumnNames="ID"/>
     </changeSet>
 
+    <changeSet id="create_table.PRODUCT_CATEGORY" author="kropotov.artem" context="postgresql"
+               labels="product_category_table">
+        <createTable tableName="PRODUCT_CATEGORY">
+            <column name="PRODUCT_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CATEGORY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="varchar(255)">
+            </column>
+            <column name="CREATED_DATE" type="varchar(255)">
+            </column>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)">
+            </column>
+            <column name="LAST_MODIFIED_DATE" type="varchar(255)">
+            </column>
+
+
+        </createTable>
+
+        <addPrimaryKey tableName="PRODUCT_CATEGORY" columnNames="PRODUCT_ID, CATEGORY_ID"/>
+
+        <addForeignKeyConstraint baseTableName="PRODUCT_CATEGORY" baseColumnNames="PRODUCT_ID"
+                                 constraintName="FK_PRODUCT_CATEGORY_PRODUCT"
+                                 referencedTableName="PRODUCT" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint baseTableName="PRODUCT_CATEGORY" baseColumnNames="CATEGORY_ID"
+                                 constraintName="FK_PRODUCT_CATEGORY_CATEGORY"
+                                 referencedTableName="CATEGORY" referencedColumnNames="ID"/>
+    </changeSet>
+
+
+
 
 </databaseChangeLog>
