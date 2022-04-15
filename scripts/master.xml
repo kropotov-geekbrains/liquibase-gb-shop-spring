@@ -15,4 +15,7 @@
 
     <include file="lesson5/category.add.service.info.columns.xml" relativeToChangelogFile="true"/>
 
+    <include file="lesson7/create.order.table.xml" relativeToChangelogFile="true"/>
+    <include file="lesson7/create.product_order.table.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
