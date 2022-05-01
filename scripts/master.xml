@@ -5,9 +5,11 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <include file="lesson1/create.init.tables.xml" relativeToChangelogFile="true"/>
-    <include file="lesson1/product.add.column.manufacturer.id.xml" relativeToChangelogFile="true"/>
-
-    <include file="lesson2/category.create.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.CATEGORY.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.MANUFACTURER.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.PRODUCT.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.PRODUCT_CATEGORY.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.SHOP_ORDER.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.PRODUCT_ORDER.table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

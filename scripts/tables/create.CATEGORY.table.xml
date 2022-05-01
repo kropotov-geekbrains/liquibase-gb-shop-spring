@@ -5,13 +5,16 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <changeSet id="before_add_version_columns_to.CATEGORY" author="kuranov" context="postgresql"
-               labels="category_id">
-        <tagDatabase tag="before_add_versions_column_to.CATEGORY"/>
+    <changeSet id="before_add_create_table.CATEGORY" author="kuranov">
+        <tagDatabase tag="before_add_create_table.CATEGORY"/>
     </changeSet>
 
-    <changeSet id="add_version_columns_to.CATEGORY" author="kuranov" context="postgresql" labels="category_id">
-        <addColumn tableName="CATEGORY">
+    <changeSet id="create_table.CATEGORY" author="kuranov">
+        <createTable tableName="CATEGORY">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(255)"/>
             <column name="VERSION" type="INTEGER" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
@@ -21,6 +24,6 @@
             </column>
             <column name="LAST_MODIFY_BY" type="VARCHAR(255)"/>
             <column name="LAST_MODIFY_DATE" type="DATE"/>
-        </addColumn>
+        </createTable>
     </changeSet>
 </databaseChangeLog>

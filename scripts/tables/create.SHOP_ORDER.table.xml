@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_add_create_table.SHOP_ORDER" author="kuranov">
+        <tagDatabase tag="before_add_create_table.SHOP_ORDER"/>
+    </changeSet>
+
+    <changeSet id="create_table.SHOP_ORDER" author="kuranov">
+        <createTable tableName="SHOP_ORDER">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="STATUS" type="VARCHAR(20)" defaultValue="ACTIVE"/>
+            <column name="ADDRESS" type="varchar(512)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="FIRSTNAME" type="varchar(255)"/>
+            <column name="LASTNAME" type="varchar(255)"/>
+            <column name="PHONE" type="varchar(20)"/>
+            <column name="MAIL" type="varchar(255)"/>
+            <column name="ORDER_STATUS" type="varchar(255)"/>
+            <column name="DELIVERY_DATE" type="DATE"/>
+            <column name="VERSION" type="INTEGER" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATE_DATE" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFY_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFY_DATE" type="DATE"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

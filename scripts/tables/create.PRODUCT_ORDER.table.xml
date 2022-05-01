@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_add_create_table.PRODUCT_ORDER" author="kuranov">
+        <tagDatabase tag="before_add_create_table.PRODUCT_ORDER"/>
+    </changeSet>
+
+    <changeSet id="create_table.PRODUCT_ORDER" author="kuranov">
+        <createTable tableName="PRODUCT_ORDER">
+            <column name="ORDER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="PRODUCT_ORDER" columnNames="PRODUCT_ID, ORDER_ID"/>
+        <addForeignKeyConstraint baseTableName="PRODUCT_ORDER" baseColumnNames="ORDER_ID"
+                                 constraintName="FK_SHOP_ORDER_ORDER_ID"
+                                 referencedTableName="SHOP_ORDER"
+                                 referencedColumnNames="ID"/>
+        <addForeignKeyConstraint baseTableName="PRODUCT_ORDER" baseColumnNames="PRODUCT_ID"
+                                 constraintName="FK_SHOP_ORDER_PRODUCT_ID"
+                                 referencedTableName="PRODUCT"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+</databaseChangeLog>

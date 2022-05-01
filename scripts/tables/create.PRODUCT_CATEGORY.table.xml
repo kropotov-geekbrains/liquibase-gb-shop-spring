@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_add_create_table.PRODUCT_CATEGORY" author="kuranov">
+        <tagDatabase tag="before_add_create_table.PRODUCT_CATEGORY"/>
+    </changeSet>
+
+    <changeSet id="create_table.PRODUCT_CATEGORY" author="kuranov">
+        <createTable tableName="PRODUCT_CATEGORY">
+            <column name="PRODUCT_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CATEGORY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="PRODUCT_CATEGORY" columnNames="PRODUCT_ID, CATEGORY_ID"/>
+
+        <addForeignKeyConstraint baseTableName="PRODUCT_CATEGORY" baseColumnNames="PRODUCT_ID"
+                                 constraintName="FK_PRODUCT_CATEGORY_PRODUCT"
+                                 referencedTableName="PRODUCT" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint baseTableName="PRODUCT_CATEGORY" baseColumnNames="CATEGORY_ID"
+                                 constraintName="FK_PRODUCT_CATEGORY_CATEGORY"
+                                 referencedTableName="CATEGORY" referencedColumnNames="ID"/>
+    </changeSet>
+</databaseChangeLog>
