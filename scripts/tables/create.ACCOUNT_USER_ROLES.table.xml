@@ -23,12 +23,14 @@
         <addPrimaryKey tableName="ACCOUNT_USER_ROLES" columnNames="ROLES_ID, ACCOUNT_USER_ID"/>
 
         <addForeignKeyConstraint baseTableName="ACCOUNT_USER_ROLES" baseColumnNames="ROLES_ID"
+                                 constraintName="FK_USER_ROLE_ROLE"
+                                 referencedTableName="ACCOUNT_ROLE" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint baseTableName="ACCOUNT_USER_ROLES" baseColumnNames="ACCOUNT_USER_ID"
                                  constraintName="FK_USER_ROLE_USER"
                                  referencedTableName="ACCOUNT_USER" referencedColumnNames="ID"/>
 
-        <addForeignKeyConstraint baseTableName="ACCOUNT_USER_ROLES" baseColumnNames="ACCOUNT_USER_ID"
-                                 constraintName="FK_USER_ROLE_ROLE"
-                                 referencedTableName="ACCOUNT_ROLE" referencedColumnNames="ID"/>
+
 
     </changeSet>
 </databaseChangeLog>
