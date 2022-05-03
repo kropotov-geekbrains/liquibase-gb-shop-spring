@@ -26,6 +26,9 @@
             <column name="LASTNAME" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="STATUS" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="ACCOUNT_NON_EXPIRED" type="BOOLEAN" defaultValue="true"/>
             <column name="ACCOUNT_NON_LOCKED" type="BOOLEAN" defaultValue="true"/>
             <column name="CREDENTIALS_NON_EXPIRED" type="BOOLEAN" defaultValue="true"/>
