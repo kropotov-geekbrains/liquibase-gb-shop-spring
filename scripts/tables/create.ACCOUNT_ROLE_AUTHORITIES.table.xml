@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_add_create_table.ACCOUNT_ROLE_AUTHORITIES" author="kuranov">
+        <tagDatabase tag="before_add_create_table.ACCOUNT_ROLE_AUTHORITIES"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_ROLE_AUTHORITIES" author="kuranov">
+        <createTable tableName="ACCOUNT_ROLE_AUTHORITIES">
+            <column name="ROLES_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUTHORITIES_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="ACCOUNT_ROLE_AUTHORITIES" columnNames="ROLES_ID, AUTHORITIES_ID"/>
+
+        <addForeignKeyConstraint baseTableName="ACCOUNT_ROLE_AUTHORITIES" baseColumnNames="ROLES_ID"
+                                 constraintName="FK_ROLE_AUTHORITY_ROLE"
+                                 referencedTableName="ACCOUNT_ROLE" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint baseTableName="ACCOUNT_ROLE_AUTHORITIES" baseColumnNames="AUTHORITIES_ID"
+                                 constraintName="FK_ROLE_AUTHORITY_AUTHORITY"
+                                 referencedTableName="AUTHORITY" referencedColumnNames="ID"/>
+    </changeSet>
+</databaseChangeLog>

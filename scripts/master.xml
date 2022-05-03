@@ -12,4 +12,10 @@
     <include file="tables/create.SHOP_ORDER.table.xml" relativeToChangelogFile="true"/>
     <include file="tables/create.PRODUCT_ORDER.table.xml" relativeToChangelogFile="true"/>
 
+    <include file="tables/create.ACCOUNT_USER.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.AUTHORITY.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.ACCOUNT_ROLE.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.ACCOUNT_USER_ROLES.table.xml" relativeToChangelogFile="true"/>
+    <include file="tables/create.ACCOUNT_ROLE_AUTHORITIES.table.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

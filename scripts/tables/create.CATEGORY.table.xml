@@ -19,11 +19,11 @@
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_BY" type="VARCHAR(255)"/>
-            <column name="CREATE_DATE" type="DATE">
+            <column name="CREATED_DATE" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="LAST_MODIFY_BY" type="VARCHAR(255)"/>
-            <column name="LAST_MODIFY_DATE" type="DATE"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

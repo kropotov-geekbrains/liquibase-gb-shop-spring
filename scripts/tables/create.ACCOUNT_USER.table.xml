@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_add_create_table.ACCOUNT_USER" author="kuranov">
+        <tagDatabase tag="before_add_create_table.ACCOUNT_USER"/>
+    </changeSet>
+
+    <changeSet id="create_table.ACCOUNT_USER" author="kuranov">
+        <createTable tableName="ACCOUNT_USER">
+            <column name="ID" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRSTNAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LASTNAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_NON_EXPIRED" type="BOOLEAN" defaultValue="true"/>
+            <column name="ACCOUNT_NON_LOCKED" type="BOOLEAN" defaultValue="true"/>
+            <column name="CREDENTIALS_NON_EXPIRED" type="BOOLEAN" defaultValue="true"/>
+            <column name="ENABLED" type="BOOLEAN" defaultValue="true"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
