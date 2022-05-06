@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="before_create_table.gb_order_product" author="selyutin">
+        <tagDatabase tag="before_create_gb_order_product_table"/>
+    </changeSet>
+
+    <changeSet id="create_table.GB_ORDER_PRODUCT" author="selyutin" context="postgresql"
+               labels="gb_order_product_table">
+        <createTable tableName="GB_ORDER_PRODUCT">
+            <column name="ORDER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCT_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="GB_ORDER_PRODUCT" columnNames="ORDER_ID,PRODUCT_ID"/>
+
+        <addForeignKeyConstraint baseTableName="GB_ORDER_PRODUCT" baseColumnNames="PRODUCT_ID"
+                                 constraintName="FK_GB_ORDER_PRODUCT_PRODUCT"
+                                 referencedTableName="PRODUCT" referencedColumnNames="ID"/>
+
+        <addForeignKeyConstraint baseTableName="GB_ORDER_PRODUCT" baseColumnNames="ORDER_ID"
+                                 constraintName="FK_GB_ORDER_PRODUCT_ORDER"
+                                 referencedTableName="GB_ORDER" referencedColumnNames="ID"/>
+    </changeSet>
+
+
+</databaseChangeLog>
