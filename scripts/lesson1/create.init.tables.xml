@@ -59,6 +59,10 @@
             <column name="TITLE" type="varchar(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
+            <column name="CREATED_BY" type="varchar(255)"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+            <column name="LAST_MODIFIED_BY" type="varchar(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
 
