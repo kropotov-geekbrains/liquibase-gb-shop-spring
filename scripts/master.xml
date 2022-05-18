@@ -9,9 +9,13 @@
 
     <include file="lesson1/create.init.tables.xml" relativeToChangelogFile="true"/>
     <include file="lesson1/product.add.column.manufacturer.id.xml" relativeToChangelogFile="true"/>
+<<<<<<< HEAD
     <include file="lesson1/create.user.role.auth.tables.xml" relativeToChangelogFile="true"/>
 
     <include file="lesson2/manufacturer.add.service.info.columns.xml" relativeToChangelogFile="true"/>
+=======
+    <include file="lesson1/create.init.tables.account.xml" relativeToChangelogFile="true"/>
+>>>>>>> master
 
     <include file="lesson5/category.add.service.info.columns.xml" relativeToChangelogFile="true"/>
 
